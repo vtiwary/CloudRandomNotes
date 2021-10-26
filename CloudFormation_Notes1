@@ -1,0 +1,1 @@
+If we dont specify the Resource name, while creating the resource, CFT will create with random name which will include stack name, logical Id and some random stuff
