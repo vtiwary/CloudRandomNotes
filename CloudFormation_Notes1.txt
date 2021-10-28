@@ -1,4 +1,5 @@
-If we dont specify the Resource name, while creating the resource, CFT will create with random name which will include stack name, logical Id and some random stuff
+If we dont specify the Resource name, while creating the resource, CFT will create with random name which will include stack name, logical Id
+and some random stuff
 
 
 CFT update types
@@ -54,4 +55,5 @@ Resources:
       InstanceType: !Ref InstanceType
       ImageId: !Ref ImageId
 
-if we change the /dev/ec2/instanceType to say t2.small and use update stack with the same stack without uploading a new one, since the new one is a differnt, it will change the underlying version
+if we change the /dev/ec2/instanceType to say t2.small and use update stack with the same stack without uploading a new one, since the new one is 
+a differnt, it will change the underlying version
