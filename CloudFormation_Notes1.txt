@@ -21,7 +21,8 @@ Refer parameters with Fn::Ref or !Ref (!Ref IN YAML) .. Ref can't be used in AWS
 Cloudfomratio : Parameter: NoEcho: True means provided entry will be secret and wont be displayed
 NoEcho
 Whether to mask the parameter value to prevent it from being displayed in the console, command line tools, or API. If you set the NoEcho attribute to true,
-CloudFormation returns the parameter value masked as asterisks (*****) for any calls that describe the stack or stack events, except for information stored in the locations specified below.
+CloudFormation returns the parameter value masked as asterisks (*****) for any calls that describe the stack or stack events, except for 
+information stored in the locations specified below.
 
 **** read following***
 https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/parameters-section-structure.html
