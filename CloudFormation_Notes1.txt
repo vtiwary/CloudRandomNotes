@@ -7,7 +7,8 @@ CFT update types
 2. Update with some interruption : change isntance types
 3. Replacement: create new instance, point the reference to the new one, delete old instance : change the region
 
-While creating the resources we have tell Cloudfomraton to pass to a different role that way that IAM roles creates it if it has the permssion (otherwise if we dont specify it will try to create using our ID)
+While creating the resources we have tell Cloudfomraton to pass to a different role that way that IAM roles creates it if it has the permssion 
+(otherwise if we dont specify it will try to create using our ID)
 
 While create the CFT we can get an estimate of the cost of the infra it will create in the review section before we click on it to create the infra
 
