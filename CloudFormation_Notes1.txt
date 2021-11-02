@@ -60,3 +60,46 @@ Resources:
 
 if we change the /dev/ec2/instanceType to say t2.small and use update stack with the same stack without uploading a new one, since the new one is 
 a differnt, it will change the underlying version
+
+Depends on (DependsOn Attribute)  ensure resources are created in order: ASG before ECS.. cases where we don't have !Ref.. !Ref or !GetAtt already add 
+DependsOn internally
+DeletionPolicy : Not delete during CFT Delete
+UpdateReplacePolicy: not update during CFT Update
+
+If DependsOn:dependent is created later and delted first 
+
+DeletionPolicy: controls what happens when the cloudformatin is deleted or resources is removed from CFT
+DeletionPolicy= Retain . retain
+DeletionPolicy= Snapshot : take snapshot for RDS, EBS Volumes , Cache
+DeletePolicy=Delete is defaults. RDS cluster and DB default is Snapshopt
+
+UpdateReplacePolicy: effective if update a property whose update behaviour is replacement..d efaullt it will delete 
+can be set to Retain or Snapshot
+
+Mapping--------
+fixed variables within cloudformation tempaltes
+ie.e account names, regiosn AMI..values are fixed and known in advance
+
+Fn::FindInMap 
+!FindInMap[ MapName, TopLevelKey, SecondLevelKey]
+
+ImageId: !FindInMap [AWSRegionArch2AMI,!Ref 'AWS::Region', HVM64]
+
+Remeber Pseudo parameters like AWS::Region, AccountNumber etc
+
+Output:
+Output from stack and other stack can refer.. unique to a region
+
+Outputs:
+  StacksSecGroupOutput:
+    Description: Output Description
+    Value: !Ref MyCompanyWideSSHSecurityGroup
+    Export:
+      Name: mysg-name-viktest
+	  
+Above check what CFT returns. !ref returns SG name
+
+To import use
+SecurityGroups:
+        # we reference the output here, using the Fn::ImportValue function
+        - !ImportValue mysg-name-viktest
