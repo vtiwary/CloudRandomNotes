@@ -103,3 +103,50 @@ To import use
 SecurityGroups:
         # we reference the output here, using the Fn::ImportValue function
         - !ImportValue mysg-name-viktest
+
+
+
+Conditions are used to create output and creation of resources on some condition.. i.e when environment is prod , do something etc, based on Region 
+or any parameter value
+can refer to other condition, parameter and mapping
+
+Conditions:
+	CreateResouces: !Equals[!Ref REvtype, PRod]
+
+condtions block, statemnet and a condtions (!Equals one) CreateResouces is the Logic ID we chose
+Condtions can havw Equals, If, Not, Or and And
+
+Resouces:
+	MountPoint:
+		Type: AWS::EC2::VolumeAttachment
+		Condition: CreateResouces
+# here if CreateResouces is not met, resouce wont get created
+
+
+Conditions:
+  IsProduction: !Equals 
+    - !Ref EnvType
+    - prod
+  CreateBucket: !Not 
+    - !Equals 
+      - !Ref BucketName
+      - ''
+  CreateBucketPolicy: !And 
+    - !Condition IsProduction
+    - !Condition CreateBucket
+
+
+!GetAtt : Get attribute, what attribute is there we can find from Documentation
+
+!GetAtt Logicname.AvailabilityZOne
+
+During a stack update, you can't update conditions by themselves. You can update conditions only when you include changes that add, modify, or delete resources.
+
+
+Rules:
+------------
+Since Parameter section has limited check available: Type, Min/MAxlength, min/max values, AllowedValues and Allowed patterns etc
+thus ruls needed. they kind of let CFT fail or succee.. i.e. Subnsets shuld be from sam VPC etc
+
+Rules can be used only under rules section.. Rules of a condition and assertion can only be true /false
+Big list of rules are there Fn::Or or Fn::Contains
